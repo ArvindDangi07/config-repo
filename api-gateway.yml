@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: microA-route
+          uri: lb://MICROA
+          predicates:
+            - Path=/a/**
+
+        - id: microB-route
+          uri: lb://MICROB
+          predicates:
+            - Path=/b/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
