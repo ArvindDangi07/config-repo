@@ -17,8 +17,6 @@ spring:
           predicates:
             - Path=/b/**
 
-server:
-  port: 8080
 
 eureka:
   client:
