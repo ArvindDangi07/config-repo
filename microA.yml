@@ -1,6 +1,6 @@
 spring:
   application:
-    name: microA
+    name: MICROA
  
 eureka:
   client:

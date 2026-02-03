@@ -1,6 +1,6 @@
 spring:
   application:
-    name: api-gateway
+    name: API-GATEWAY
   cloud:
     gateway:
       discovery:
@@ -11,8 +11,7 @@ spring:
           uri: lb://MICROA
           predicates:
             - Path=/a/**        # match /a/**
-          filters:
-            - StripPrefix=1      # removes /a/ before forwarding
+         
 
 
 
