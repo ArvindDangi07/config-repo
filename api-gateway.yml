@@ -5,17 +5,15 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: false   # disable discovery locator
       routes:
         - id: microA-route
           uri: lb://MICROA
           predicates:
-            - Path=/a/**
+            - Path=/a/**        # match /a/**
+          filters:
+            - StripPrefix=1      # removes /a/ before forwarding
 
-        - id: microB-route
-          uri: lb://MICROB
-          predicates:
-            - Path=/b/**
 
 
 eureka:
