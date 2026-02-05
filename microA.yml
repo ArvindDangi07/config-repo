@@ -1,45 +1,24 @@
-spring:
-  application:
-    name: MICROA
- 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance: 
+    hostname: localhost
 
-# ===============================
-# ACTUATOR CONFIG
-# ===============================
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-  endpoint:
-    health:
-      show-details: always
-  health:
-    circuitbreakers:
-      enabled: true
-  tracing:
-    sampling:
-      probability: 1.0   # VERY IMPORTANT (always sample)
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9412/api/v2/spans
 
-# ===============================
-# RESILIENCE4J CONFIG
-# ===============================
-resilience4j:
-  circuitbreaker:
-    instances:
-      serviceA:
-        registerHealthIndicator: true
-        slidingWindowType: COUNT_BASED
-        slidingWindowSize: 5
-        minimumNumberOfCalls: 3
-        failureRateThreshold: 50
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 2
-        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+
+ 
+microservice:
+  microA:
+    endpoints:
+      endpoint:
+        uri: http://MICROA/a/showA
+  microB:
+    endpoints:
+      endpoint:
+        uri: http://MICROB/b/showB   
+
+    
